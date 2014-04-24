@@ -4,8 +4,10 @@
   <ServiceId serviceName="EVO TPS BCP Host Capture">39C6700001</ServiceId>
   <ServiceId serviceName="EVO TPS BCP Terminal Capture">4C85600001</ServiceId>
   <WorkflowId workflowName="Magensa SBX - EVO TPS BCP Host Capture SBX">A121700001</WorkflowId>
+  <WorkflowId workflowName="Magensa SBX - EVO TPS BCP Terminal Capture SBX">A1F1A00001</WorkflowId>
+  <WorkflowId workflowName="Magensa TEST - EVO TPS BCP Host Capture SBX">A121700011</WorkflowId>
+  <WorkflowId workflowName="Magensa TEST - EVO TPS BCP Terminal Capture SBX">A1F1A00011</WorkflowId>
   <ApplicationProfileId>4815</ApplicationProfileId>
   <MerchantProfileId serviceId="39C6700001">TestMerchant_39C6700001</MerchantProfileId>
-  <MerchantProfileId serviceId="4C85600001">Test Merchant Profile</MerchantProfileId>
   <MerchantProfileId serviceId="4C85600001">TestMerchant_4C85600001</MerchantProfileId>
 </config>

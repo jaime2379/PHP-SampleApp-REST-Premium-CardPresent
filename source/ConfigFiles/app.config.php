@@ -40,6 +40,7 @@ class Settings
 	// encryption key value
 	const key = '1234567890123456ABCDEFGHIJKLMNOP'; // Used for Salt for encryption and decryption.  You should generate your Salt and not use the default key provided
 	const UseWorkflow = 'true';  // true/false whether or not to use workflows associated to ServiceKey
+	const ActivationKey = '';
 	// Application Data Values 
 	const ApplicationName = 'My Test App';
 	const SoftwareVersion = 'v1.0';
@@ -76,7 +77,7 @@ class Settings
 	const TxnData_IncludeCFees = false;		// 'true', 'false'
 	const TxnData_SoftDescriptors = false;		// 'true', 'false'
 	// Support Tokenization
-	const TxnData_SupportTokenization = true; // 'true', 'false'
+	const TxnData_SupportTokenization = false; // 'true', 'false'
 	const TxnData_ProcessEncrypted = true;
 
 	// Process as a BankcardTransaction object or as a BankcardTransactionPro object
