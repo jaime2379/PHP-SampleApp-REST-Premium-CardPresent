@@ -83,11 +83,11 @@ class Settings
 	const ProcessInternationalTxn = true;
 
 	// Process as a BankcardTransaction object or as a BankcardTransactionPro object
-	const ProcessAsBankcardTransaction_Pro = false;		// 'true', 'false' If set to true the following Pro parameters are required
+	const ProcessAsBankcardTransaction_Pro = true;		// 'true', 'false' If set to true the following Pro parameters are required
 	// THE FOLLOWING WAS 'true' NOT LEVEL1 IN HTTP
 	const Pro_PurchaseCardLevel = Level1;		// 'Level1', 'Level2', 'Level3' 
 	const Pro_InterchangeData = false;		// 'true', 'false'
-	const Pro_IncludeLevel2OrLevel3Data = false;		// 'true', 'false'
+	const Pro_IncludeLevel2OrLevel3Data = true;		// 'true', 'false'
 	const Pro_IncludeAlternativeMerchantData = 'false';		// 'true', 'false'
 	
 	/// ACH Transaction Data Values

@@ -122,6 +122,40 @@ function setBCPTxnData($_serviceInformation) {
 		// $tenderData->track1 = 'B4111111111111111^EVOSNAP/TESTCARD^15121010454500415000010';
 		// $tenderData->track2 = '4111111111111111=15121010454541500010';
 	}
+	if (Settings:: EMVData_ChangeMe)  {
+		$EMVData->ApplicationId = 'testitem'; // Tag 9F06 AID
+		$EMVData->ApplicationVersionNumber = 'testitem'; // Tag 9F09
+		$EMVData->AuthorizationAmount = 'testitem'; // Tag 9F02
+		$EMVData->ApplicationInterchangeProfile = 'testitem'; // Tag 82
+		$EMVData->ApplicationTransactionCount = 'testitem'; // Tag 9F36 ATC
+		$EMVData->ApplicationUsageControl = 'testitem'; // Tag 9F07
+		$EMVData->AuthorizationResponseCode = 'testitem'; // Tag 8A
+		$EMVData->CardAuthenticationReliabilityIndex = 'testitem'; 
+		$EMVData->CardAuthenticationResultsCode = 'testitem';
+		$EMVData->ChipConditionCode = 'testitem';
+		$EMVData->Cryptogram = 'testitem'; // Tag 9F26
+		$EMVData->CryptogramInformationData = 'testitem'; // Tag 9F27
+		$EMVData->CVMList = 'testitem'; // Tag 8E
+		$EMVData->CVMResults = 'testitem'; // Tag 9F34
+		$EMVData->InterfaceDeviceSerialNumber = 'testitem'; // Tag 9F1E IFD
+		$EMVData->CashBackAmount = 'testitem'; // Tag 9F03
+		$EMVData->IssuerActionDefault = 'testitem'; // Tag 9F0D
+		$EMVData->IssuerActionDenial = 'testitem'; // Tag 9F0E
+		$EMVData->IssuerActionOnline = 'testitem'; // Tag 9F0F
+		$EMVData->IssuerApplicationData = 'testitem'; // Tag 9F10
+		$EMVData->IssuerScriptResults = 'testitem'; 
+		$EMVData->LocalTransactionDate = 'testitem'; // Tag 9A
+		$EMVData->TerminalCountryCode = 'testitem'; // Tag 9F1A
+		$EMVData->TerminalType = 'testitem'; // Tag 9F35
+		$EMVData->TerminalVerifyResult = 'testitem'; // Tag 95
+		$EMVData->TransactionCategoryCode = 'testitem'; 
+		$EMVData->CurrencyCode = 'testitem'; // Tag 5F2A
+		$EMVData->SequenceNumber = 'testitem'; // Tag 9F41
+		$EMVData->TransactionType = 'testitem'; // Tag 9C
+		$EMVData->UnpredictableNumber = 'testitem'; // Tag 9F37
+	}
+		
+	}
 	
 	// Transaction information
 	/* SEE TRANSACTION INFORMATION CLASS IN CWSClient.php FOR MORE INFO */
@@ -171,17 +205,52 @@ function setBCPTxnData($_serviceInformation) {
 		$transactionData->IsQuasiCash = false; // boolean true or false
 		                                       // $transactionData->TipAmount = ''; // in a decimal format
 		$transactionData->ReportingData = new TransactionReportingData ();
-		$transactionData->ReportingData->Description = 'description';
-		$transactionData->LaneId = "1";
+		$transactionData->ReportingData->
 		$level2Data = new Level2Data ();
-		$level2Data->BaseAmount = '9.00';
-		$level2Data->OrderDate = DateTime::ISO8601;
-		$level2Data->OrderNumber = '123545';
+		$level2Data->BaseAmount = '9.00'; // order[total_subtotal]
+		$level2Data->CommodityCode = 'testitem'; // order[commodity_code]
+		$level2Data->CompanyName = 'testitem'; // order[billto_company]
+		$level2Data->CustomerCode = 'testitem'; // order[customer_code]
+		$level2Data->DiscountAmount = '1.00'; // order[discount_amount]
+		$level2Data->DestinationPostalCode = 'testitem'; // order[shipto_zipcode]
+		$level2Data->DutyAmount = '1.00'; // order[duty_amount]
+		$level2Data->FreightAmount = '1.00'; // order[total_shipping]
+		$level2Data->MiscHandlingAmount ='1.00'; 
+		$level2Data->RequesterName = 'testitem';
+		$level2Data->ShipFromPostalCode = 'testitem'; // order[ship_code]
+		$level2Data->ShipmentId = 'testitem'; // order[shipment_id]
+		$level2Data->OrderDate = DateTime::ISO8601; // order[order_date]
+		$level2Data->OrderNumber = '123545'; // order[merchant_order_id]
 		$level2Data->TaxExempt = new TaxExempt ();
-		$level2Data->TaxExempt = 'IsTaxExempt';
+		$level2Data->TaxExempt = 'IsTaxExempt'; // order_tax[exempt]
 		$level2Data->Tax = new Tax ();
-		$level2Data->Tax->Amount = '1.00';
+		$level2Data->Tax->Amount = '1.00'; // order_tax[amount]
+		$level2Data->Tax->Rate = '.5'; // order_tax[rate]
+		$level2Data->Tax->InvoiceNumber = 'testitem'; // order_tax[invoice_number]
+		$level2Data->Tax->ItemizedTaxes = New ItemizedTaxes ();
+		$level2Data->Tax->ItemizedTaxes->ItemizedTax = New ItemizedTax ();
+		$level2Data->Tax->ItemizedTaxes->ItemizedTax->Amount = '1.00'; // order_itemized_tax[N][amount]
+		$level2Data->Tax->ItemizedTaxes->ItemizedTax->Rate = '0.5'; // order_itemized_tax[N][rate]
+		$level2Data->Tax->ItemizedTaxes->ItemizedTax->Type = 'VAT'; // order_itemized_tax[N][type]
+		$level2Data->Description = 'testitem';
+		$level2Data->DestinationCountryCode = 'USA'; // order[shipto_country]
+		$lineItemDetail = new LineItemDetail ();
+		$lineItemDetail->DiscountAmount = '1.00'; // order[total_discount]
+		$lineItemDetail->ProductCode = 'testitem'; // order_item[N][sku]
+		$lineItemDetail->Tax = new Tax ();
+		$lineItemDetail->Tax->Amount = '1.00'; // order_item[N][amount]
+		$lineItemDetail->UnitPrice = '10.00'; // order_item[N][price]
+		$lineItemDetail->Quantity = '5.00'; // order_item[N][qty]
+		$lineItemDetail->Description = 'testitem'; // order_item[N][description]
+		$lineItemDetail->Amount = '1.00'; // order_item[N][amount]
+		$lineItemDetail->UnitOfMeasure = 'VAT'; // order_item[N][unit_of_measure]
+		$lineItemDetail->CommodityCode = 'testitem'; // order_item[N][commodity_code]
+		$lineItemDetail->DiscountAmount = 'testitem'; // order_item[N][discount_amount]
+		$lineItemDetail->DiscountIncluded = 'true'; // order_item[N][discount_included]
+		$lineItemDetail->TaxIncluded = 'true'; // order_item[N][tax_included]
+		$lineItemDetail->UPC = 'testitem'; // order_item[N][upc]
 		$transactionData->Level2Data = $level2Data;
+		
 	}
 	
 	if (Settings::TxnData_SoftDescriptors) {
