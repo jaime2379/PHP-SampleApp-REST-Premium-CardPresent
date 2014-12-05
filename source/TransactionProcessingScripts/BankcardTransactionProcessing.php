@@ -171,18 +171,12 @@ if (is_array($_merchantProfileId)){
 		if($_bcs->Operations->ReturnById && !$_bcs->AutoBatch)
 		{
 			// First send an Authorize to Capture
-			$response3 = $client->authorize($bcpTxn->TndrData, $bcpTxn->TxnData, Settings::ProcessAsBankcardTransaction_Pro, Settings::ProcessInternationalTxn);
-			printTransactionResults ( $response3, 'Authorize to be Returned by ReturnById', $merchProfileId );
+			$response3 = $client->authorize($bcpTxn->TndrData, $bcpTxn->TxnData, Settings::ProcessAsBankcardTransaction_Pro);
+			printTransactionResults($response3, 'Authorize For CaptureSelective', $merchProfileId);
 			$txnIds [0] = $response3->TransactionId;
-			
-			if ($_bcs->Operations->CaptureAll && ! $_bcs->AutoBatch) {
-				$response4 = $client->CaptureAll ( null, null );
-				printBatchResults ( $response4, $merchProfileId );
-			} else {
 			// Now send the Void using TransactionId from above transaction response
 			$response4 = $client->CaptureSelective($txnIds, null);
-				printBatchResults ( $response4, $merchProfileId );
-			}
+			printBatchResults($response4, $merchProfileId);
 
 			// Note: You must provide an already captured Authorize TransactionId for ReturnById
 			$response6 = $client->returnByID($response3->TransactionId, $bcpTxn->TxnData->Creds, '2.00');
@@ -201,11 +195,8 @@ if (is_array($_merchantProfileId)){
 			$response7 = $client->returnUnlinked($bcpTxn->TndrData, $bcpTxn->TxnData, $bcpTxn->TxnData->Creds);
 			printTransactionResults($response7, 'ReturnUnlinked', $merchProfileId);
 		}
-		if ($_bcs->Operations->CaptureAll && ! $_bcs->AutoBatch) {
-			$response4 = $client->CaptureAll ( null, null );
-			printBatchResults ( $response4, $merchProfileId );
-		}
 	}
 }
+
 
 ?>
