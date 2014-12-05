@@ -28,7 +28,7 @@ require_once ABSPATH . '/ConfigFiles/app.config.php';
 // Credit Card Info
 /* SEE CREDIT CARD CLASS IN CWSClient.php FOR MORE INFO */
 function setBCPTxnData($_serviceInformation) {
-	if (Settings::IndustryType == 'Retail') {
+	if (Settings::IndustryType == 'Retail' && !Settings::TxnData_ProcessAsKeyed && !Settings::TxnData_ProcessEncrypted) {
 		$tenderData = new creditCard ();
 		$tenderData->type = 'Visa';
 		// $tenderData->name = 'John Doe';
@@ -40,7 +40,7 @@ function setBCPTxnData($_serviceInformation) {
 		// $tenderData->track1 = 'B4111111111111111^EVOSNAP/TESTCARD^15121010454500415000010';
 		$tenderData->track2 = '4111111111111111=15121010454541500010';
 	}
-	if (Settings::IndustryType == 'Restaurant') {
+	elseif (Settings::IndustryType == 'Restaurant' && !Settings::TxnData_ProcessAsKeyed && !Settings::TxnData_ProcessEncrypted) {
 		$tenderData = new creditCard ();
 		$tenderData->type = 'Visa';
 		// $tenderData->name = 'John Doe';
@@ -52,7 +52,7 @@ function setBCPTxnData($_serviceInformation) {
 		// $tenderData->track1 = 'B4111111111111111^EVOSNAP/TESTCARD^15121010454500415000010';
 		$tenderData->track2 = '4111111111111111=15121010454541500010';
 	}
-	if (Settings::IndustryType == 'MOTO') {
+	elseif (Settings::IndustryType == 'MOTO' && !Settings::TxnData_ProcessEncrypted) {
 		$tenderData = new creditCard ();
 		$tenderData->type = 'MasterCard';
 		$tenderData->name = 'John Doe';
@@ -62,7 +62,7 @@ function setBCPTxnData($_serviceInformation) {
 		 * $tenderData->cvv = '111'; // Security code $tenderData->address = '1000 1st Av'; $tenderData->zip = '10101';
 		 */
 	}
-	if (Settings::IndustryType == 'Ecommerce') {
+	elseif (Settings::IndustryType == 'Ecommerce' && !Settings::TxnData_ProcessEncrypted) {
 		$tenderData = new creditCard ();
 		$tenderData->type = 'Visa';
 		$tenderData->name = 'John Doe';
@@ -74,7 +74,7 @@ function setBCPTxnData($_serviceInformation) {
 		$tenderData->state = 'CO';
 		$tenderData->zip = '10101';
 	}
-	if (Settings::TxnData_ProcessEncrypted) {
+	elseif (Settings::TxnData_ProcessEncrypted) {
 		$tenderData = new creditCard ();
 		// $tenderData->type = 'Visa';
 		// $tenderData->name = 'John Doe';
@@ -108,7 +108,7 @@ function setBCPTxnData($_serviceInformation) {
 		// $tenderData->identificationInformation = '9ED72A486AB36DC352957C2C00607E937D1D90CB8B09A8588629AABA8EAF0FD65296A4FBA490EECFCD8D5B350438C4BFA6A36FFA2ADAAA3E'; //Encrypted MagnePrint® Information returned by the MagneSafe™ device when card is swiped.
 		// $tenderData->swipeStatus = '00304061'; //MagnePrint Status of Card Swipe. This is an alpha numeric string, returned by MagneSafe device when card is swiped.
 	}
-	if (Settings::TxnData_ProcessAsKeyed) {
+	elseif (Settings::TxnData_ProcessAsKeyed) {
 		$tenderData = new creditCard ();
 		$tenderData->type = 'Visa';
 		$tenderData->name = 'John Doe';
@@ -122,6 +122,40 @@ function setBCPTxnData($_serviceInformation) {
 		// $tenderData->track1 = 'B4111111111111111^EVOSNAP/TESTCARD^15121010454500415000010';
 		// $tenderData->track2 = '4111111111111111=15121010454541500010';
 	}
+	if (Settings:: EMVData_ChangeMe)  {
+		$EMVData->ApplicationId = 'testitem'; // Tag 9F06 AID
+		$EMVData->ApplicationVersionNumber = 'testitem'; // Tag 9F09
+		$EMVData->AuthorizationAmount = 'testitem'; // Tag 9F02
+		$EMVData->ApplicationInterchangeProfile = 'testitem'; // Tag 82
+		$EMVData->ApplicationTransactionCount = 'testitem'; // Tag 9F36 ATC
+		$EMVData->ApplicationUsageControl = 'testitem'; // Tag 9F07
+		$EMVData->AuthorizationResponseCode = 'testitem'; // Tag 8A
+		$EMVData->CardAuthenticationReliabilityIndex = 'testitem'; 
+		$EMVData->CardAuthenticationResultsCode = 'testitem';
+		$EMVData->ChipConditionCode = 'testitem';
+		$EMVData->Cryptogram = 'testitem'; // Tag 9F26
+		$EMVData->CryptogramInformationData = 'testitem'; // Tag 9F27
+		$EMVData->CVMList = 'testitem'; // Tag 8E
+		$EMVData->CVMResults = 'testitem'; // Tag 9F34
+		$EMVData->InterfaceDeviceSerialNumber = 'testitem'; // Tag 9F1E IFD
+		$EMVData->CashBackAmount = 'testitem'; // Tag 9F03
+		$EMVData->IssuerActionDefault = 'testitem'; // Tag 9F0D
+		$EMVData->IssuerActionDenial = 'testitem'; // Tag 9F0E
+		$EMVData->IssuerActionOnline = 'testitem'; // Tag 9F0F
+		$EMVData->IssuerApplicationData = 'testitem'; // Tag 9F10
+		$EMVData->IssuerScriptResults = 'testitem'; 
+		$EMVData->LocalTransactionDate = 'testitem'; // Tag 9A
+		$EMVData->TerminalCountryCode = 'testitem'; // Tag 9F1A
+		$EMVData->TerminalType = 'testitem'; // Tag 9F35
+		$EMVData->TerminalVerifyResult = 'testitem'; // Tag 95
+		$EMVData->TransactionCategoryCode = 'testitem'; 
+		$EMVData->CurrencyCode = 'testitem'; // Tag 5F2A
+		$EMVData->SequenceNumber = 'testitem'; // Tag 9F41
+		$EMVData->TransactionType = 'testitem'; // Tag 9C
+		$EMVData->UnpredictableNumber = 'testitem'; // Tag 9F37
+	}
+		
+	}
 	
 	// Transaction information
 	/* SEE TRANSACTION INFORMATION CLASS IN CWSClient.php FOR MORE INFO */
@@ -133,13 +167,16 @@ function setBCPTxnData($_serviceInformation) {
 	if ($encryptedTransaction)
 		$transactionData->EntryMode = 'Track2DataFromMSR'; // Keyed, TrackDataFromMSR For MagTek Enumeration set to EntryMode.Track2DataFromMSR. Value does not come from the device.
 	if (! $encryptedTransaction)
+		$transactionData->EntryMode = Settings::TxnData_EntryMode;
+	if (Settings::TxnData_ProcessAsKeyed)
 		$transactionData->EntryMode = 'Keyed'; // Keyed, TrackDataFromMSR For MagTek Enumeration set to EntryMode.Track2DataFromMSR. Value does not come from the device.
 	
 	$transactionData->Amount = '10.00'; // in a decimal format xx.xx
 	                                    // $transactionData->CashBackAmount = '0.00'; // in a decimal format. used for PINDebit transactions
 	$transactionData->CurrencyCode = 'USD'; // TypeISOA3 Currency Codes USD CAD
-	$transactionData->SignatureCaptured = false; // boolean true or false
+	$transactionData->SignatureCaptured = Settings::TxnData_SignatureCaptured; // boolean true or false
 	$transactionData->LaneId = "1";
+	$transactionData->Reference = "1";
 	if (isset ( $transactionData->IsPartialShipment ))
 		$transactionData->IsPartialShipment = false; // boolean true or false
 	if (isset ( $transactionData->IsQuasiCash ))
@@ -168,8 +205,7 @@ function setBCPTxnData($_serviceInformation) {
 		$transactionData->IsQuasiCash = false; // boolean true or false
 		                                       // $transactionData->TipAmount = ''; // in a decimal format
 		$transactionData->ReportingData = new TransactionReportingData ();
-		$transactionData->ReportingData->Description = 'description';
-		$transactionData->LaneId = "1";
+		$transactionData->ReportingData->
 		$level2Data = new Level2Data ();
 		$level2Data->BaseAmount = '9.00'; // order[total_subtotal]
 		$level2Data->CommodityCode = 'testitem'; // order[commodity_code]
