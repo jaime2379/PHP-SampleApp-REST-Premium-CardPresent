@@ -95,13 +95,13 @@ class Settings
 	const TxnData_ServiceType = 'ACH';   //Indicates the Electronic Checking service type: ACH, RDC or ECK. Required.
 	
 	// Endpoint Management
-	const BaseSvcEndpointPrimary = 'https://api.cipcert.goevo.com/2.0.20/SvcInfo';
-	const BaseSvcEndpointSecondary = 'https://api.cipcert.goevo.com/2.0.20/SvcInfo';
-	const BaseTxnEndpointPrimary = 'https://api.cipcert.goevo.com/2.0.20/Txn';
-	const BaseTxnEndpointSecondary = 'https://api.cipcert.goevo.com/2.0.20/Txn';
-	const BaseDataServicesEndpointPrimary = 'https://api.cipcert.goevo.com/2.0.20/DataServices/TMS';
-	const BaseDataServicesEndpointSecondary = 'https://api.cipcert.goevo.com/2.0.20/DataServices/TMS';
-	const URL_BaseURL = 'https://api.cipcert.goevo.com/2.0.20/';
-	const URL_RestURL = 'https://api.cipcert.goevo.com/REST/2.0.20/';
+	const BaseSvcEndpointPrimary = 'https://api.cipcert.goevo.com/2.0.22/SvcInfo';
+	const BaseSvcEndpointSecondary = 'https://api.cipcert.goevo.com/2.0.22/SvcInfo';
+	const BaseTxnEndpointPrimary = 'https://api.cipcert.goevo.com/2.0.22/Txn';
+	const BaseTxnEndpointSecondary = 'https://api.cipcert.goevo.com/2.0.22/Txn';
+	const BaseDataServicesEndpointPrimary = 'https://api.cipcert.goevo.com/2.0.22/DataServices/TMS';
+	const BaseDataServicesEndpointSecondary = 'https://api.cipcert.goevo.com/2.0.22/DataServices/TMS';
+	const URL_BaseURL = 'https://api.cipcert.goevo.com/2.0.22/';
+	const URL_RestURL = 'https://api.cipcert.goevo.com/REST/2.0.22/';
 }
 ?>

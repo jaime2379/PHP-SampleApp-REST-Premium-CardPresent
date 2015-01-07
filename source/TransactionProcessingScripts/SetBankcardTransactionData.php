@@ -320,5 +320,6 @@ function setBCPTxnData($_serviceInformation) {
 	}
 	$transaction->TxnData = $transactionData;
 	return $transaction;
-}
+	
+
 ?>
